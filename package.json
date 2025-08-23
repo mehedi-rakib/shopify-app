@@ -22,7 +22,7 @@
     "vite": "vite"
   },
   "engines": {
-    "node": "^18.20 || ^20.10 || >=21.0.0"
+    "node": "^18.20 || ^20.10 || >=24.0.0"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
