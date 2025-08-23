@@ -23,18 +23,10 @@ export async function loader({ request }) {
   const { admin, session } = await authenticate.admin(request);
   const apiVersion = await getLatestShopifyApiVersion(session);
 
-  // Get limit from URL params or use default value
   const url = new URL(request.url);
   const limit = parseInt(url.searchParams.get('limit')) || 50;
 
-  // Add console logs to help debug
-  // console.log('Shop URL:', session.shop);
-  // console.log('API Version:', apiVersion);
-  // console.log('Default Supplier:', DEFAULT_SUPPLIER);
-  // console.log('Products Limit:', limit);
-
   try {
-    // Fetch products from Shopify API with dynamic limit
     const response = await fetch(
       `https://${session.shop}/admin/api/${apiVersion}/products.json?vendor=${encodeURIComponent(DEFAULT_SUPPLIER)}&limit=${limit}`,
       {
@@ -44,7 +36,6 @@ export async function loader({ request }) {
         },
       }
     );
-
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -52,23 +43,58 @@ export async function loader({ request }) {
     const data = await response.json();
     const products = data.products || [];
 
+    // Collect inventory_item_id values from variants
+    const allIds = Array.from(
+      new Set(
+        products.flatMap((p) =>
+          (p.variants || []).map((v) => v.inventory_item_id).filter(Boolean)
+        )
+      )
+    );
+
+    // Fetch InventoryItems (cost) in chunks
+    const inventoryCosts = {};
+    const chunk = (arr, size) => Array.from({ length: Math.ceil(arr.length / size) }, (_, i) => arr.slice(i * size, i * size + size));
+    for (const group of chunk(allIds, 50)) {
+      const invRes = await fetch(
+        `https://${session.shop}/admin/api/${apiVersion}/inventory_items.json?ids=${group.join(",")}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Shopify-Access-Token": session.accessToken,
+          },
+        }
+      );
+      const invJson = await invRes.json();
+      const items = invJson.inventory_items || [];
+      for (const item of items) {
+        // REST may return cost as string; normalize to number
+        const costNum = item.cost != null ? Number(item.cost) : null;
+        if (!Number.isNaN(costNum) && costNum != null) {
+          inventoryCosts[item.id] = costNum;
+        }
+      }
+    }
+
     return json({
       products,
+      inventoryCosts, // add map: inventory_item_id -> cost
       error: null,
-      shop: session.shop // Add shop URL to the returned data
+      shop: session.shop,
     });
   } catch (error) {
     console.error("Error fetching imported products:", error);
     return json({
       products: [],
+      inventoryCosts: {},
       error: `Failed to fetch imported products: ${error.message}`,
-      shop: null
+      shop: null,
     });
   }
 }
 
 export default function ImportedProductsPage() {
-  const { products, error, shop } = useLoaderData();
+  const { products, error, shop, inventoryCosts } = useLoaderData();
   const navigate = useNavigate();
   const location = useLocation();
   const currentLimit = new URLSearchParams(location.search).get('limit') || '50';
@@ -85,6 +111,14 @@ export default function ImportedProductsPage() {
     const image = product.images[0] || {};
     const inventory = typeof variant.inventory_quantity === 'number' ? variant.inventory_quantity : 0;
     const price = variant.price ? `$${variant.price}` : "$0.00";
+
+    // Use InventoryItem cost from loader
+    const invItemId = variant.inventory_item_id;
+    const rawCost = invItemId ? inventoryCosts?.[invItemId] : null;
+    const cost = (rawCost != null && !Number.isNaN(Number(rawCost)))
+      ? `$${Number(rawCost).toFixed(2)}`
+      : "$0.00";
+
     const sku = variant.sku || "N/A";
     const imageSrc = image.src || "";
 
@@ -94,6 +128,7 @@ export default function ImportedProductsPage() {
       sku,
       inventory,
       price,
+      cost,
       product.vendor || "Unknown",
       <Thumbnail source={imageSrc} alt={product.title || "Image"} />,
       <Box display="flex" gap="2">
@@ -162,6 +197,7 @@ export default function ImportedProductsPage() {
                 "text",
                 "numeric",
                 "numeric",
+                "numeric",
                 "text",
                 "text",
                 "text"
@@ -172,6 +208,7 @@ export default function ImportedProductsPage() {
                 "SKU",
                 "Stock",
                 "Price",
+                "Wholesale Price",
                 "Supplier",
                 "Image",
                 "Actions"

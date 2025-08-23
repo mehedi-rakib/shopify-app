@@ -3,7 +3,7 @@
 client_id = "b9c31446087e7f08eb6d7af6c7bca900"
 name = "AWDS"
 handle = "awds"
-application_url = "https://spin-fisheries-salaries-data.trycloudflare.com"
+application_url = "https://practical-installing-merchant-taylor.trycloudflare.com"
 embedded = true
 
 [build]
@@ -28,9 +28,9 @@ scopes = "read_customers,read_inventory,read_locations,read_orders,read_products
 
 [auth]
 redirect_urls = [
-  "https://spin-fisheries-salaries-data.trycloudflare.com/auth/callback",
-  "https://spin-fisheries-salaries-data.trycloudflare.com/auth/shopify/callback",
-  "https://spin-fisheries-salaries-data.trycloudflare.com/api/auth/callback"
+  "https://practical-installing-merchant-taylor.trycloudflare.com/auth/callback",
+  "https://practical-installing-merchant-taylor.trycloudflare.com/auth/shopify/callback",
+  "https://practical-installing-merchant-taylor.trycloudflare.com/api/auth/callback"
 ]
 
 [pos]

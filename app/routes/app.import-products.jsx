@@ -163,6 +163,7 @@ export async function action({ request }) {
             variants: [
               {
                 price: product.mrp_price,
+                cost: product.wholesale_price,
                 sku: product.sku,
                 inventory_quantity: product.stock,
                 inventory_management: "shopify",

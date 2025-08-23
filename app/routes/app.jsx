@@ -27,6 +27,7 @@ export default function App() {
         <Link to="/app/import-products">Import Products</Link>
         <Link to="/app/imported-products">Imported Products</Link>
         <Link to="/app/sample-csv"> Sample CSV </Link>
+        <Link to="/app/order-log"> Order Log </Link>
         <Link to="/app/debug-log"> Debug Log </Link>
       </NavMenu>
       <Outlet />

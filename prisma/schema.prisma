@@ -63,14 +63,12 @@ model ImportedProducts {
 }
 
 model OrderLog {
-  id         Int                    @id @default(autoincrement())
-  shopId     String                 
-  order_id   String
-  product_id String
-  sku        String
-  quantity   Int
-  createdAt  DateTime              @default(now())
-  updatedAt  DateTime              @updatedAt
+  id                       Int                    @id @default(autoincrement())
+  shopId                   String                 
+  order_id                 BigInt
+  supplier_order_id        BigInt
+  createdAt                DateTime              @default(now())
+  updatedAt                DateTime              @updatedAt
 }
 
 model DebugLog {
@@ -82,12 +80,3 @@ model DebugLog {
   createdAt DateTime               @default(now())
 }
 
-model OrderWebhook {
-  id         Int      @id @default(autoincrement())
-  shop       String
-  orderId    String
-  payload    Json
-  createdAt  DateTime @default(now())
-
-  @@index([shop, orderId])
-}

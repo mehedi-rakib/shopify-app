@@ -5,7 +5,7 @@ import { title } from "process";
 
 export const action = async ({ request }) => {
   const apiKey = request.headers.get("x-api-key");
-  const { sku, supplier, name, price, stock } = await request.json();
+  const { sku, supplier, name, price, cost, stock } = await request.json();
 
 
   // Fetch the first configuration record
@@ -54,6 +54,7 @@ export const action = async ({ request }) => {
               inventory_quantity: stock,
               sku: importedProduct.sku,
               price: price ? price : importedProduct.mrp_price,
+              cost: cost ? cost : importedProduct.wholesale_price,
             },
           ],
         },
@@ -69,6 +70,7 @@ export const action = async ({ request }) => {
     data: {
       stock,
       mrp_price: price ? parseFloat(price) : importedProduct.mrp_price,
+      wholesale_price: cost ? parseFloat(cost) : importedProduct.wholesale_price,
       name: name ? name : importedProduct.name,
     },
   });

@@ -14,7 +14,21 @@ export const action = async ({ request }) => {
   // Fetch configuration from DB
   const config = await db.configuration.findFirst();
   const fullOrderManage = config?.fullOrderManage === true;
-  const orderManage = config?.orderManage === true; // <-- Get orderManage value
+  const orderManage = config?.orderManage === true;
+
+  // Get all SKUs from request
+  const requestSkus = data.line_items.map(item => item.sku);
+
+  // Fetch imported products matching SKUs
+  const importedProducts = await db.importedProducts.findMany({
+    where: { sku: { in: requestSkus } }
+  });
+
+  // Helper to get wholesale_price by SKU
+  const getWholesalePrice = sku => {
+    const product = importedProducts.find(p => p.sku === sku);
+    return product ? product.wholesale_price : ""; // fallback if not found
+  };
 
   // Prepare order_details
   const order_details = data.line_items.map(item => ({
@@ -23,7 +37,7 @@ export const action = async ({ request }) => {
     supplier_product_id: "",
     product_id: item.id,
     quantity: item.current_quantity,
-    wholesale_price: "500",
+    wholesale_price: getWholesalePrice(item.sku), // <-- Set from importedProducts
     mrp_price: item.price,
     unit_price: item.price,
     total_price: item.price * item.current_quantity,
@@ -126,10 +140,10 @@ export const action = async ({ request }) => {
   const appId = config?.appId;
   const secretKey = config?.secretKey;
   // Collect SKUs for stock check
-  const skus = payload.order_details.map(item => item.sku);
-  
+  const stockCheckSkus = payload.order_details.map(item => item.sku);
+
   // Call stock API
-  const stockApiUrl = `${baseUrl}/api/en/products/by-api?${skus.map(sku => `skus[]=${sku}`).join("&")}`;
+  const stockApiUrl = `${baseUrl}/api/en/products/by-api?${stockCheckSkus.map(sku => `skus[]=${sku}`).join("&")}`;
   const stockResponse = await fetch(stockApiUrl, {
     method: "GET",
     headers: {
@@ -169,6 +183,15 @@ export const action = async ({ request }) => {
 
   const thirdPartyResult = await thirdPartyResponse.json();
 
+
+  // Insert into OrderLog after successful order creation
+  await db.orderLog.create({
+    data: {
+      shopId: config.shopId,
+      order_id: data.id,
+      supplier_order_id: thirdPartyResult.order_id ? thirdPartyResult.order_id : null,
+    }
+  });
   console.log("Third-party API response:", thirdPartyResult);
   return json({
     received: true,
