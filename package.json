@@ -3,15 +3,13 @@
   "private": true,
   "type": "module",
   "author": "Juliush",
-
   "scripts": {
     "build": "remix vite:build",
     "dev": "shopify app dev",
     "start": "remix-serve ./build/server/index.js",
-
+    "vercel-build": "prisma generate && prisma db push && remix vite:build",
     "docker-start": "npm run setup && npm run start",
     "setup": "prisma generate && prisma migrate deploy",
-
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "config:link": "shopify app config link",
     "config:use": "shopify app config use",
@@ -23,67 +21,53 @@
     "graphql-codegen": "graphql-codegen",
     "vite": "vite"
   },
-
   "engines": {
     "node": "^18.20 || ^20.10 || >=21.0.0"
   },
-
   "dependencies": {
-    "@prisma/client": "^6.5.0",
-
-    "@remix-run/dev": "^2.16.1",
-    "@remix-run/fs-routes": "^2.16.1",
-    "@remix-run/node": "^2.16.1",
-    "@remix-run/react": "^2.16.1",
-    "@remix-run/serve": "^2.16.1",
-
-    "@shopify/app-bridge-react": "^4.1.6",
+    "@prisma/client": "^5.12.1",
+    "@remix-run/dev": "^2.8.1",
+    "@remix-run/node": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
+    "@remix-run/serve": "^2.8.1",
+    "@shopify/app-bridge-react": "^4.1.2",
     "@shopify/polaris": "^12.0.0",
-    "@shopify/polaris-icons": "^9.3.1",
-    "@shopify/shopify-api": "^11.12.0",
-    "@shopify/shopify-app-remix": "^3.7.0",
-    "@shopify/shopify-app-session-storage-prisma": "^6.0.0",
-
-    "axios": "^1.11.0",
+    "@shopify/polaris-icons": "^8.4.0",
+    "@shopify/shopify-api": "^9.3.2",
+    "@shopify/shopify-app-remix": "^2.6.1",
+    "@shopify/shopify-app-session-storage-prisma": "^4.0.1",
+    "axios": "^1.6.8",
     "crypto-js": "^4.2.0",
-    "dotenv": "^16.5.0",
+    "dotenv": "^16.4.5",
     "isbot": "^5.1.0",
-    "prisma": "^6.2.1",
-
+    "prisma": "^5.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite-tsconfig-paths": "^5.0.1"
+    "vite-tsconfig-paths": "^4.3.2"
   },
-
   "devDependencies": {
-    "@remix-run/eslint-config": "^2.16.1",
-    "@remix-run/route-config": "^2.16.1",
-    "@shopify/api-codegen-preset": "^1.1.1",
-
-    "@types/eslint": "^9.6.1",
-    "@types/node": "^22.2.0",
+    "@remix-run/eslint-config": "^2.8.1",
+    "@shopify/api-codegen-preset": "^1.0.3",
+    "@types/eslint": "^8.56.10",
+    "@types/node": "^20.12.7",
     "@types/react": "^18.2.31",
     "@types/react-dom": "^18.2.14",
-
     "eslint": "^8.42.0",
-    "eslint-config-prettier": "^10.0.1",
+    "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.4",
     "typescript": "^5.2.2",
-    "vite": "^6.2.2"
+    "vite": "^5.2.8"
   },
-
   "workspaces": [
     "extensions/*"
   ],
-
   "trustedDependencies": [
     "@shopify/plugin-cloudflare"
   ],
-
   "resolutions": {
-    "@graphql-tools/url-loader": "8.0.16"
+    "@graphql-tools/url-loader": "8.0.0"
   },
   "overrides": {
-    "@graphql-tools/url-loader": "8.0.16"
+    "@graphql-tools/url-loader": "8.0.0"
   }
 }
