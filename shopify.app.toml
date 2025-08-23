@@ -3,7 +3,7 @@
 client_id = "9591257500733d503a43267d91f37134"
 name = "AWDS"
 handle = "awds"
-application_url = "https://practical-installing-merchant-taylor.trycloudflare.com"
+application_url = "https://shopify-app-azure.vercel.app/"
 embedded = true
 
 [build]
@@ -28,9 +28,9 @@ scopes = "read_customers,read_inventory,read_locations,read_orders,read_products
 
 [auth]
 redirect_urls = [
-  "https://practical-installing-merchant-taylor.trycloudflare.com/auth/callback",
-  "https://practical-installing-merchant-taylor.trycloudflare.com/auth/shopify/callback",
-  "https://practical-installing-merchant-taylor.trycloudflare.com/api/auth/callback"
+  "https://shopify-app-azure.vercel.app//auth/callback",
+  "https://shopify-app-azure.vercel.app//auth/shopify/callback",
+  "https://shopify-app-azure.vercel.app//api/auth/callback"
 ]
 
 [pos]
