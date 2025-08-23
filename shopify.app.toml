@@ -1,0 +1,37 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "b9c31446087e7f08eb6d7af6c7bca900"
+name = "AWDS"
+handle = "awds"
+application_url = "https://spin-fisheries-salaries-data.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[webhooks]
+api_version = "2025-01"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "orders/create" ]
+  uri = "/webhooks"
+  compliance_topics = [ "customers/data_request", "customers/redact", "shop/redact" ]
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_customers,read_inventory,read_locations,read_orders,read_products,write_inventory,write_orders,write_products"
+
+[auth]
+redirect_urls = [
+  "https://spin-fisheries-salaries-data.trycloudflare.com/auth/callback",
+  "https://spin-fisheries-salaries-data.trycloudflare.com/auth/shopify/callback",
+  "https://spin-fisheries-salaries-data.trycloudflare.com/api/auth/callback"
+]
+
+[pos]
+embedded = false

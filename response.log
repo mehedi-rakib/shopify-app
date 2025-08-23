@@ -1,0 +1,249 @@
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 8606,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: "500.00",
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: undefined,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    }
+  ],
+  skipDuplicates: true
+  ~~~~~~~~~~~~~~
+}
+
+Unknown argument `skipDuplicates`. Available options are marked with ?.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 8606,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: "500.00",
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: undefined,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    }
+  ]
+}
+
+Argument `supplier_product_id` is missing.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 12437,
+      name: "Aishodo Sakura Moisture Lip Serum 10g",
+      sku: "4560438578442",
+      wholesale_price: "500.00",
+      mrp_price: 1250,
+      stock: 360,
+      supplier: "azanwholesale",
+      supplier_product_id: 12437,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-WN0YjYakGtCnyiVxXj4Pt1IkmL4qhW.jpg"
+    }
+  ]
+}
+
+Argument `wholesale_price`: Invalid value provided. Expected Float, provided String.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 8606,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: 500,
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: 8606,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    }
+  ]
+}
+
+Argument `supplier_product_id`: Invalid value provided. Expected String, provided Int.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      product_id: 8606,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: 500,
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: 8606,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    }
+  ]
+}
+
+Argument `shopId` is missing.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      product_id: 8606,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: 500,
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: 8606,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    }
+  ]
+}
+
+Argument `shopId` is missing.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`shopId`)
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`shopId`)
+
+❌ Error for product 3W Clinic Crystal White Milky Sun Cream SPF50 50ml:
+shopifyProductId is not defined
+
+❌ Error for product 3W Clinic Intensive Aloe Sunblock Cream SPF50+ PA+++ 70ml:
+shopifyProductId is not defined
+
+❌ Main Error:
+shopifyProductId is not defined
+
+❌ Error for product 3W Clinic Crystal White Milky Sun Cream SPF50 50ml:
+shopifyProductId is not defined
+
+❌ Main Error:
+shopifyProductId is not defined
+
+❌ Error for product 3W Clinic Crystal White Milky Sun Cream SPF50 50ml:
+shopifyProductId is not defined
+
+❌ Main Error:
+shopifyProductId is not defined
+
+❌ Error for product Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml:
+shopifyProductId is not defined
+
+❌ Main Error:
+shopifyProductId is not defined
+
+❌ Error for product Aishodo Sakura Moisture Lip Serum 10g:
+shopifyProductId is not defined
+
+❌ Error for product 3W Clinic Intensive UV Sunblock Cream SPF50+ Pa+++ 70ml:
+shopifyProductId is not defined
+
+❌ Error for product Simple Kind to Skin Moisturising Face Wash 150ml:
+shopifyProductId is not defined
+
+❌ Main Error:
+shopifyProductId is not defined
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+{
+  data: [
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 7684028825678,
+      name: "Simple Water Boost 9% Hydration Powered Micellar Gel Wash 150ml",
+      sku: "8710908710773-2",
+      wholesale_price: 500,
+      mrp_price: 850,
+      stock: 461,
+      supplier: "azanwholesale",
+      supplier_product_id: 8606,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-OIZbePvmKKfmr1bVFWtRt271EP9QrK.jpg"
+    },
+    {
+      shopId: "azanwholesale.myshopify.com",
+      product_id: 7684028858446,
+      name: "Aishodo Sakura Moisture Lip Serum 10g",
+      sku: "4560438578442",
+      wholesale_price: 500,
+      mrp_price: 1250,
+      stock: 360,
+      supplier: "azanwholesale",
+      supplier_product_id: 12437,
+      picture: "https://euadmin.eurasiasupplies.com/storage/images/product/normal-WN0YjYakGtCnyiVxXj4Pt1IkmL4qhW.jpg"
+    }
+  ],
+  skipDuplicates: true
+  ~~~~~~~~~~~~~~
+}
+
+Unknown argument `skipDuplicates`. Available options are marked with ?.
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`supplier_product_id`)
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`supplier_product_id`)
+
+❌ Main Error:
+
+Invalid `prisma.importedProducts.createMany()` invocation:
+
+
+Unique constraint failed on the fields: (`supplier_product_id`)
+
