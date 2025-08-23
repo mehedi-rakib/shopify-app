@@ -11,8 +11,8 @@ build
 /node_modules
 database.sqlite
 *.zip
-.env
-.env.*
+# .env
+# .env.*
 .vscode
 /.vscode
 /extensions/*/dist
