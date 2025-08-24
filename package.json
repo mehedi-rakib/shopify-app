@@ -38,6 +38,7 @@
     "@shopify/shopify-api": "^11.0.0",
     "@shopify/shopify-app-remix": "^2.8.1",
     "@shopify/shopify-app-session-storage-prisma": "^5.0.1",
+    "@vercel/remix": "^2.16.7",
     "axios": "^1.7.2",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.5",
