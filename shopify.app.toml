@@ -4,6 +4,10 @@ client_id = "9591257500733d503a43267d91f37134"
 name = "AWDS"
 handle = "awds"
 application_url = "https://shopify-app-azure.vercel.app/"
+[auth]
+redirect_urls = [
+  "https://shopify-app-azure.vercel.app/auth/callback",
+]
 embedded = true
 
 [build]
