@@ -1,7 +1,15 @@
-import { createRequestHandler } from "@remix-run/vercel";
-import * as build from "@remix-run/dev/server-build";
+import express from "express";
+import { createRequestHandler } from "@remix-run/express";
+import * as build from "./build/index.js";
 
-export default createRequestHandler({
-  build,
-  mode: process.env.NODE_ENV,
-});
+const app = express();
+
+app.all(
+  "*",
+  createRequestHandler({
+    build,
+    mode: process.env.NODE_ENV
+  })
+);
+
+export default app;
