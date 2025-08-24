@@ -23,7 +23,7 @@
     "vite": "vite"
   },
   "engines": {
-    "node": "22.x"
+    "node": "18.x"
   },
   "dependencies": {
     "@prisma/client": "^5.16.1",
